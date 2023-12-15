@@ -142,8 +142,7 @@ model = jtu.tree_unflatten(jtu.tree_structure(model), model_leaves)
 # only for shakespeare_char
 load_meta = False
 meta_path = os.path.join(config.data_dir, "meta.pkl")
-load_meta = os.path.exists(meta_path)
-if load_meta:
+if load_meta := os.path.exists(meta_path):
     print(f"Loading meta from LOCAL {meta_path}...")
     with open(meta_path, "rb") as f:
         meta = pickle.load(f)
