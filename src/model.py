@@ -160,7 +160,7 @@ class GPT(eqx.Module):
 
 def count_params(model: GPT) -> int:
     dupe = jnp.size(model.lm_head.weight_MxN)  # embedding and final layer are shared.
-    tot = sum([jnp.size(x) for x in jtu.tree_leaves(model) if isinstance(x, jax.Array)])
+    tot = sum(jnp.size(x) for x in jtu.tree_leaves(model) if isinstance(x, jax.Array))
     return tot - dupe  # non-embedding only.
 
 
