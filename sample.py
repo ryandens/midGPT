@@ -4,7 +4,6 @@ Sample from a trained model
 import argparse
 import os
 import json
-import pickle
 
 from jax.experimental import mesh_utils
 from src.model import GPT
@@ -20,6 +19,7 @@ import orbax.checkpoint as ocp
 import tiktoken
 
 from src.train import cast_pytree
+import fickling
 
 jtu = jax.tree_util
 NamedSharding, Mesh = jax.sharding.NamedSharding, jax.sharding.Mesh
@@ -146,7 +146,7 @@ load_meta = os.path.exists(meta_path)
 if load_meta:
     print(f"Loading meta from LOCAL {meta_path}...")
     with open(meta_path, "rb") as f:
-        meta = pickle.load(f)
+        meta = fickling.load(f)
     # TODO want to make this more general to arbitrary encoder/decoder schemes
     stoi, itos = meta["stoi"], meta["itos"]
     encode = lambda s: [stoi[c] for c in s]
