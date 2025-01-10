@@ -8,3 +8,4 @@ orbax==0.1.9
 rich==13.7.0
 gcsfs
 wandb
+fickling>=0.1.3,~=0.1.0
